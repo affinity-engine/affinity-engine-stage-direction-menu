@@ -1,45 +1,60 @@
 import Ember from 'ember';
 import layout from '../templates/components/ember-theater-director-direction-menu';
 import multiton from 'ember-multiton-service';
+import { configurable, deepConfigurable } from 'ember-theater';
+import { DirectableComponentMixin, TransitionableComponentMixin } from 'ember-theater-director';
 
 const {
   Component,
-  computed,
-  get,
-  getProperties,
-  on
+  on,
+  run,
+  set
 } = Ember;
 
-const { alias } = computed;
+const { computed: { alias } } = Ember;
 
-export default Component.extend({
+const mixins = [
+  DirectableComponentMixin,
+  TransitionableComponentMixin
+];
+
+const configurationTiers = [
+  'directable.attrs',
+  'config.attrs.director.menu',
+  'config.attrs.director',
+  'config.attrs.globals'
+];
+
+export default Component.extend(...mixins, {
   layout,
 
-  classNames: ['et-director'],
-  windowId: 'main',
+  hook: 'menu_direction',
 
+  config: multiton('ember-theater/config', 'theaterId'),
   producer: multiton('ember-theater/producer', 'theaterId'),
-  sceneManager: multiton('ember-theater/director/scene-manager', 'theaterId', 'windowId'),
-  stageManager: multiton('ember-theater/director/stage-manager', 'theaterId', 'windowId'),
 
-  directables: alias('stageManager.directables'),
   keyboardActivated: alias('producer.isFocused'),
 
-  _loadLatestScene: on('didInsertElement', function() {
-    const {
-      initialScene,
-      sceneManager,
-      windowId,
-      window
-    } = getProperties(this, 'initialScene', 'sceneManager', 'windowId', 'window');
+  menuUI: configurable(configurationTiers, 'menuUI'),
 
-    if (windowId === 'main') {
-      sceneManager.setinitialScene(initialScene);
-      sceneManager.loadLatestScene();
-    } else {
-      const sceneRecord = get(this, 'sceneRecord');
+  transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
+  transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
 
-      sceneManager.toScene(initialScene, { autosave: false, sceneRecord, window });
+  transitionInMenu: on('didInsertElement', function() {
+    this.executeTransitionIn();
+  }),
+
+  actions: {
+    choose(choice) {
+      set(this, 'directable.direction.result', choice);
+
+      this.$().parents('.ember-theater').trigger('focus');
+
+      this.executeTransitionOut().then(() => {
+        run(() => {
+          this.resolveAndDestroy();
+        });
+      });
     }
-  })
+  }
 });

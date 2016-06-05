@@ -2,7 +2,7 @@ module.exports = {
   parser: 'babel-eslint',
   globals: {
     'delay': true,
-    'keyUp': true,
+    'keyDown': true,
     'step': true
   },
   env: {

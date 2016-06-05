@@ -2,8 +2,9 @@ import Ember from 'ember';
 import layout from '../templates/components/ember-theater-director-direction-menu-single-column';
 import { keyDown, EKMixin } from 'ember-keyboard';
 import multiton from 'ember-multiton-service';
-import { PerfectScrollbarMixin, configurable } from 'ember-theater';
-import { StyleableMixin } from 'ember-theater-director';
+import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
+import { configurable } from 'ember-theater';
+import { StyleableComponentMixin } from 'ember-theater-director';
 
 const {
   Component,
@@ -20,7 +21,7 @@ const { run: { next } } = Ember;
 const mixins = [
   EKMixin,
   PerfectScrollbarMixin,
-  StyleableMixin
+  StyleableComponentMixin
 ];
 
 const configurationTiers = [
@@ -35,6 +36,11 @@ export default Component.extend(...mixins, {
 
   classNames: ['et-menu', 'et-menu-single-column'],
   classNameBindings: ['joinedCustomClassNames'],
+  hook: 'menu_direction_single_column',
+
+  perfectScrollbarOptions: {
+    suppressScrollX: true
+  },
 
   config: multiton('ember-theater/config', 'theaterId'),
 

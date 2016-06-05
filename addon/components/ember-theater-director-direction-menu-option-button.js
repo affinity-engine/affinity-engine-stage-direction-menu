@@ -12,6 +12,7 @@ export default Component.extend({
 
   classNameBindings: ['choice.class'],
   classNames: ['et-menu-option'],
+  hook: 'menu_direction_option_button',
   tagName: 'button',
 
   handleAction: on('click', 'submit', function() {
