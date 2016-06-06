@@ -12,6 +12,7 @@ const {
   typeOf
 } = Ember;
 
+const { computed: { alias } } = Ember;
 const { inject: { service } } = Ember;
 
 const configurationTiers = [
@@ -28,15 +29,29 @@ export default Component.extend({
 
   config: multiton('ember-theater/config', 'theaterId'),
   translator: service('ember-theater/translator'),
+  producer: multiton('ember-theater/producer', 'theaterId'),
+
+  keyboardActivated: alias('producer.isFocused'),
 
   choices: configurable(configurationTiers, 'choices'),
+  customClassNames: configurable(configurationTiers, 'classNames'),
   header: configurable(configurationTiers, 'header'),
+  keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
+  menuUI: configurable(configurationTiers, 'menuUI'),
 
   handlePriorSceneRecord: on('didInsertElement', function() {
     if (isPresent(get(this, 'priorSceneRecord'))) {
       const choice = get(this, 'priorSceneRecord');
 
       this.send('choose', choice);
+    }
+  }),
+
+  joinedCustomClassNames: computed('customClassNames.[]', {
+    get() {
+      const classNames = get(this, 'customClassNames');
+
+      return typeOf(classNames) === 'array' ? classNames.join(' ') : classNames;
     }
   }),
 

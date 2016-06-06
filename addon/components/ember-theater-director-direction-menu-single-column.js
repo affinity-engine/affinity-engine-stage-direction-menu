@@ -35,7 +35,7 @@ export default Component.extend(...mixins, {
   layout,
 
   classNames: ['et-menu', 'et-menu-single-column'],
-  classNameBindings: ['joinedCustomClassNames'],
+  classNameBindings: ['menuClassNames'],
   hook: 'menu_direction_single_column',
 
   perfectScrollbarOptions: {
@@ -44,18 +44,8 @@ export default Component.extend(...mixins, {
 
   config: multiton('ember-theater/config', 'theaterId'),
 
-  keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
   moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
   moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
-  customClassNames: configurable(configurationTiers, 'classNames'),
-
-  joinedCustomClassNames: computed('customClassNames.[]', {
-    get() {
-      const classNames = get(this, 'customClassNames');
-
-      return typeOf(classNames) === 'array' ? classNames.join(' ') : classNames;
-    }
-  }),
 
   setupKeys: on('init', function() {
     const { moveDownKeys, moveUpKeys } = getProperties(this, 'moveDownKeys', 'moveUpKeys');
