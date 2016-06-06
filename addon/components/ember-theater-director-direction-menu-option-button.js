@@ -3,6 +3,7 @@ import layout from '../templates/components/ember-theater-director-direction-men
 
 const {
   Component,
+  computed,
   get,
   on
 } = Ember;
@@ -14,6 +15,12 @@ export default Component.extend({
   classNames: ['et-menu-option'],
   hook: 'menu_direction_option_button',
   tagName: 'button',
+
+  iconComponent: computed('choice.iconComponent', {
+    get() {
+      return get(this, 'choice.iconComponent') || 'fa-icon';
+    }
+  }),
 
   handleAction: on('click', 'submit', function() {
     if (get(this, 'choice.inputable')) {
