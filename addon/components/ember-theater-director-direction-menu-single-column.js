@@ -12,7 +12,6 @@ const {
   get,
   getProperties,
   isPresent,
-  on,
   typeOf
 } = Ember;
 
@@ -47,20 +46,24 @@ export default Component.extend(...mixins, {
   moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
   moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
 
-  setupKeys: on('init', function() {
+  init(...args) {
+    this._super(...args);
+
     const { moveDownKeys, moveUpKeys } = getProperties(this, 'moveDownKeys', 'moveUpKeys');
 
     moveDownKeys.forEach((key) => this.on(keyDown(key), (event) => this.focusDown(event)));
     moveUpKeys.forEach((key) => this.on(keyDown(key), (event) => this.focusUp(event)));
-  }),
+  },
 
-  focusFirstMenu: on('didInsertElement', function() {
+  didInsertElement(...args) {
+    this._super(...args);
+
     next(() => {
       if (get(this, 'keyboardActivated')) {
         this.focusDown();
       }
     });
-  }),
+  },
 
   focusDown(event) {
     this.keyboardEvent(event, (index, length) => {

@@ -10,13 +10,17 @@ export default TextField.extend({
   classNames: ['et-menu-input'],
   hook: 'menu_direction_option_input',
 
-  focus: on('didInsertElement', function() {
-    this.$().focus();
-  }),
+  didInsertElement(...args) {
+    this._super(...args);
 
-  onFocusOut: on('focusOut', function() {
+    this.$().focus();
+  },
+
+  focusOut(...args) {
+    this._super(...args);
+
     this.attrs.toggleInput();
-  }),
+  },
 
   complete: on(keyDown('Enter'), function() {
     this.attrs.choose();

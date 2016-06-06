@@ -8,7 +8,6 @@ const {
   computed,
   get,
   isPresent,
-  on,
   typeOf
 } = Ember;
 
@@ -40,13 +39,15 @@ export default Component.extend({
   keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
   menuUI: configurable(configurationTiers, 'menuUI'),
 
-  handlePriorSceneRecord: on('didInsertElement', function() {
+  didInsertElement(...args) {
+    this._super(...args);
+
     if (isPresent(get(this, 'priorSceneRecord'))) {
       const choice = get(this, 'priorSceneRecord');
 
       this.send('choose', choice);
     }
-  }),
+  },
 
   joinedCustomClassNames: computed('customClassNames.[]', {
     get() {

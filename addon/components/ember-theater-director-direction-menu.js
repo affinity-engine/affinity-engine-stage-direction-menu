@@ -6,7 +6,6 @@ import { DirectableComponentMixin, TransitionableComponentMixin } from 'ember-th
 
 const {
   Component,
-  on,
   run,
   set
 } = Ember;
@@ -33,9 +32,11 @@ export default Component.extend(...mixins, {
   transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
   transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
 
-  transitionInMenu: on('didInsertElement', function() {
+  didInsertElement(...args) {
+    this._super(...args);
+
     this.executeTransitionIn();
-  }),
+  },
 
   actions: {
     choose(choice) {

@@ -4,8 +4,7 @@ import layout from '../templates/components/ember-theater-director-direction-men
 const {
   Component,
   computed,
-  get,
-  on
+  get
 } = Ember;
 
 export default Component.extend({
@@ -22,11 +21,21 @@ export default Component.extend({
     }
   }),
 
-  handleAction: on('click', 'submit', function() {
+  click(...args) {
+    this._super(...args);
+    this.handleAction();
+  },
+
+  submit(...args) {
+    this._super(...args);
+    this.handleAction();
+  },
+
+  handleAction() {
     if (get(this, 'choice.inputable')) {
       this.attrs.toggleInput();
     } else {
       this.attrs.choose();
     }
-  })
+  }
 });
