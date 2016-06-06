@@ -16,9 +16,9 @@ export default Component.extend({
   hook: 'menu_direction_option_button',
   tagName: 'button',
 
-  iconComponent: computed('choice.iconComponent', {
+  iconComponent: computed('choice.iconFamily', {
     get() {
-      return get(this, 'choice.iconComponent') || 'fa-icon';
+      return get(this, 'choice.iconFamily') || get(this, 'iconFamily');
     }
   }),
 

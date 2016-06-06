@@ -36,6 +36,7 @@ export default Component.extend({
   choices: configurable(configurationTiers, 'choices'),
   customClassNames: configurable(configurationTiers, 'classNames'),
   header: configurable(configurationTiers, 'header'),
+  iconFamily: configurable(configurationTiers, 'iconFamily'),
   keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
   menuUI: configurable(configurationTiers, 'menuUI'),
 
