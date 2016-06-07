@@ -14,13 +14,14 @@ moduleForAcceptance('Acceptance | ember-theater/director/directions/menu', {
 });
 
 test('Ember Theater | Director | Directions | Menu', function(assert) {
-  assert.expect(21);
+  assert.expect(22);
 
   visit('/ember-theater/test-scenarios/director/directions/menu').then(() => {
     assert.equal($hook('menu_direction').length, 1, 'menu is rendered');
     assert.equal($hook('menu_direction_single_column').length, 1, 'menu defaults to single-column');
     assert.equal($hook('menu_direction_option').length, 3, 'options are rendered');
     assert.equal($hook('menu_direction_option_button').length, 3, 'options default to buttons');
+    assert.ok($hook('menu_direction_single_column').hasClass('ps-container'), 'perfect scrollbar was applied');
 
     return click(Ember.$(`${hook('menu_direction_option_button')}:nth(1)`));
   }).then(() => {
@@ -49,6 +50,7 @@ test('Ember Theater | Director | Directions | Menu', function(assert) {
 
     return keyDown('Enter');
   }).then(() => {
+    debugger
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
     assert.equal($hook('menu_direction_header').text().trim(), 'foo', 'header is set correctly');
     assert.ok($hook('menu_direction_single_column').hasClass('bar'), 'className bar added correctly');
