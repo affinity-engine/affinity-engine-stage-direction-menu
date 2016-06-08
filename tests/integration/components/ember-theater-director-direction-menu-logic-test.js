@@ -1,8 +1,22 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { initialize as initializeHook } from 'ember-hook';
+import { initialize as initializeMultitons } from 'ember-multiton-service';
+
+const {
+  getOwner
+} = Ember;
 
 moduleForComponent('ember-theater-director-direction-menu-logic', 'Integration | Component | ember theater director direction menu logic', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    const appInstance = getOwner(this);
+
+    initializeHook();
+    initializeMultitons(appInstance);
+  }
 });
 
 test('it renders', function(assert) {
@@ -12,13 +26,4 @@ test('it renders', function(assert) {
   this.render(hbs`{{ember-theater-director-direction-menu-logic}}`);
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#ember-theater-director-direction-menu-logic}}
-      template block text
-    {{/ember-theater-director-direction-menu-logic}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });

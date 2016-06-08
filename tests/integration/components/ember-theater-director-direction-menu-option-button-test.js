@@ -1,24 +1,102 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { initialize as initializeHook } from 'ember-hook';
+import { initialize as initializeMultitons } from 'ember-multiton-service';
+import { hook } from 'ember-hook';
+
+const {
+  getOwner,
+  set,
+  setProperties
+} = Ember;
 
 moduleForComponent('ember-theater-director-direction-menu-option-button', 'Integration | Component | ember theater director direction menu option button', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    const appInstance = getOwner(this);
+
+    initializeHook();
+    initializeMultitons(appInstance);
+  }
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders the button attributes correctly', function(assert) {
+  assert.expect(2);
 
-  this.render(hbs`{{ember-theater-director-direction-menu-option-button}}`);
+  set(this, 'choice', {
+    class: 'foo'
+  });
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{ember-theater-director-direction-menu-option-button choice=choice}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#ember-theater-director-direction-menu-option-button}}
-      template block text
-    {{/ember-theater-director-direction-menu-option-button}}
-  `);
+  const $button = this.$(hook('menu_direction_option_button'));
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok($button.is('button'), 'it is a button');
+  assert.ok($button.hasClass('foo'), 'has the correct class');
+});
+
+test('it renders the button text correctly', function(assert) {
+  assert.expect(1);
+
+  const text = 'foo';
+
+  set(this, 'choice', {
+    text
+  });
+
+  this.render(hbs`{{ember-theater-director-direction-menu-option-button choice=choice}}`);
+
+  assert.equal(this.$(hook('menu_direction_option_button_text')).text().trim(), text, 'text rendered correctly');
+});
+
+test('it renders an icon if one is provided', function(assert) {
+  assert.expect(1);
+
+  set(this, 'choice', {
+    icon: 'foo',
+    iconFamily: 'icon-component'
+  });
+
+  this.render(hbs`{{ember-theater-director-direction-menu-option-button choice=choice}}`);
+
+  assert.equal(this.$(hook('menu_direction_option_button_icon')).text().trim(), 'foo', 'icon rendered correctly');
+});
+
+test('when clicked, it triggers `choose` by default', function(assert) {
+  assert.expect(1);
+
+  setProperties(this, {
+    toggleInput() {
+      assert.ok(false, 'toggleInput was called')
+    },
+    choose() {
+      assert.ok(true, 'choose was called');
+    }
+  });
+
+  this.render(hbs`{{ember-theater-director-direction-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
+
+  this.$(hook('menu_direction_option_button')).click();
+});
+
+test('when clicked, it triggers `toggleInput` if the choice is `inputable`', function(assert) {
+  assert.expect(1);
+
+  setProperties(this, {
+    choice: {
+      inputable: true
+    },
+    toggleInput() {
+      assert.ok(true, 'toggleInput was called')
+    },
+    choose() {
+      assert.ok(false, 'choose was called');
+    }
+  });
+
+  this.render(hbs`{{ember-theater-director-direction-menu-option-button choice=choice toggleInput=(action toggleInput) choose=(action choose)}}`);
+
+  this.$(hook('menu_direction_option_button')).click();
 });

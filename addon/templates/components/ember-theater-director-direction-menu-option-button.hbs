@@ -1,4 +1,5 @@
 {{#if choice.icon}}
-  {{component iconComponent choice.icon}}
+  {{component iconFamily choice.icon hook="menu_direction_option_button_icon"}}
 {{/if}}
-<span class='et-menu-option-text'>{{choice.text}}</span>
+
+<span class="et-menu-option-text" data-test={{hook "menu_direction_option_button_text"}}>{{choice.text}}</span>
