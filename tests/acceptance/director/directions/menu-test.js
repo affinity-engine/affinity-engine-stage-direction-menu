@@ -50,6 +50,8 @@ test('Ember Theater | Director | Directions | Menu', function(assert) {
 
     return keyDown('Enter');
   }).then(() => {
+    return delay(50);
+  }).then(() => {
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
     assert.equal($hook('menu_direction_header').text().trim(), 'foo', 'header is set correctly');
     assert.ok($hook('menu_direction_single_column').hasClass('bar'), 'className bar added correctly');

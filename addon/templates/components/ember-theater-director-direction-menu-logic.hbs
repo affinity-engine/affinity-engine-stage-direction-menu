@@ -1,12 +1,18 @@
 {{component menuUI
   choices=translatedChoices
-  menuClassNames=joinedCustomClassNames
-  choose=choose
   directable=directable
   header=translatedHeader
-  iconFamily=iconFamily
   keyboardActivated=keyboardActivated
   keyboardPriority=keyboardPriority
+  menuClassNames=joinedCustomClassNames
   theaterId=theaterId
   windowId=windowId
+  option=(component "ember-theater-director-direction-menu-option"
+    choose=choose
+    keyboardActivated=keyboardActivated
+    keyboardPriority=keyboardPriority
+    iconFamily=iconFamily
+    theaterId=theaterId
+    windowId=windowId
+  )
 }}
