@@ -8,11 +8,9 @@ import { StyleableComponentMixin } from 'ember-theater-director';
 
 const {
   Component,
-  computed,
   get,
   getProperties,
-  isPresent,
-  typeOf
+  isPresent
 } = Ember;
 
 const { run: { next } } = Ember;

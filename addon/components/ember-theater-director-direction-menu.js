@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/ember-theater-director-direction-menu';
 import multiton from 'ember-multiton-service';
-import { configurable, deepConfigurable } from 'ember-theater';
+import { deepConfigurable } from 'ember-theater';
 import { DirectableComponentMixin, TransitionableComponentMixin } from 'ember-theater-director';
 
 const {
