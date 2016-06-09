@@ -49,8 +49,13 @@ export default Component.extend(...mixins, {
 
     const { moveDownKeys, moveUpKeys } = getProperties(this, 'moveDownKeys', 'moveUpKeys');
 
-    moveDownKeys.forEach((key) => this.on(keyDown(key), (event) => this.focusDown(event)));
-    moveUpKeys.forEach((key) => this.on(keyDown(key), (event) => this.focusUp(event)));
+    if (isPresent(moveDownKeys)) {
+      moveDownKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusDown(event)));
+    }
+
+    if (isPresent(moveUpKeys)) {
+      moveUpKeys.forEach((key) => this.on(keyDown(key), (event) => this._focusUp(event)));
+    }
   },
 
   didInsertElement(...args) {
@@ -58,24 +63,24 @@ export default Component.extend(...mixins, {
 
     next(() => {
       if (get(this, 'keyboardActivated')) {
-        this.focusDown();
+        this._focusDown();
       }
     });
   },
 
-  focusDown(event) {
-    this.keyboardEvent(event, (index, length) => {
+  _focusDown(event) {
+    this._keyboardEvent(event, (index, length) => {
       return index + 1 === length ? 0 : index + 1;
     });
   },
 
-  focusUp(event) {
-    this.keyboardEvent(event, (index, length) => {
+  _focusUp(event) {
+    this._keyboardEvent(event, (index, length) => {
       return index - 1 < 0 ? length - 1 : index - 1;
     });
   },
 
-  keyboardEvent(event, indexCallback) {
+  _keyboardEvent(event, indexCallback) {
     if (isPresent(event)) {
       event.preventDefault();
     }
