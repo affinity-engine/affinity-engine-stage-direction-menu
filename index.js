@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-theater-director-menu'
+  name: 'affinity-engine-stage-menu'
 };

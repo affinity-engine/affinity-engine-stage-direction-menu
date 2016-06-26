@@ -1,0 +1,19 @@
+{{#if directable.attrs.text}}
+  {{#affinity-engine-stage-direction-text directable=directable.attrs.text keyboardActivated=keyboardActivated engineId=engineId windowId=windowId willResolveExternally=true}}
+    <div class="et-text-menu">
+      {{affinity-engine-stage-direction-menu-logic
+        directable=directable
+        engineId=engineId
+        windowId=windowId
+        choose=(action 'choose')
+      }}
+    </div>
+  {{/affinity-engine-stage-direction-text}}
+{{else}}
+  {{affinity-engine-stage-direction-menu-logic
+    directable=directable
+    engineId=engineId
+    windowId=windowId
+    choose=(action 'choose')
+  }}
+{{/if}}

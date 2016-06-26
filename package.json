@@ -1,7 +1,7 @@
 {
-  "name": "ember-theater-director-menu",
+  "name": "affinity-engine-stage-menu",
   "version": "0.0.0",
-  "description": "Menus for Ember Theater Director",
+  "description": "Menus for Affinity Engine Stage",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/ember-theater/ember-theater-director-menu",
+  "repository": "https://github.com/affinity-engine/affinity-engine-stage-menu",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -41,16 +41,16 @@
     "ember-moment": "6.1.0",
     "ember-perfect-scrollbar": "0.0.1",
     "ember-resolver": "^2.0.3",
-    "ember-theater": "git+https://github.com/ember-theater/ember-theater.git#v2",
-    "ember-theater-director": "git+https://github.com/ember-theater/ember-theater-director.git",
+    "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
+    "affinity-engine-stage": "git+https://github.com/affinity-engine/affinity-engine-stage.git",
     "ember-try": "^0.2.2",
     "loader.js": "^4.0.1"
   },
   "keywords": [
     "ember-addon",
-    "ember-theater",
-    "ember-theater-director",
-    "ember-theater-director direction"
+    "affinity-engine",
+    "affinity-engine-stage",
+    "affinity-engine-stage direction"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
@@ -59,9 +59,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.ember.theater/learn/director/directions/menu",
+    "demoURL": "http://www.ember.engine/learn/director/directions/menu",
     "after": [
-      "ember-theater-director"
+      "affinity-engine-stage"
     ]
   }
 }
