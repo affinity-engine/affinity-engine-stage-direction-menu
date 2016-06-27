@@ -1,5 +1,5 @@
 {
-  "name": "affinity-engine-stage-menu",
+  "name": "affinity-engine-stage-direction-menu",
   "version": "0.0.0",
   "description": "Menus for Affinity Engine Stage",
   "directories": {
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/affinity-engine/affinity-engine-stage-menu",
+  "repository": "https://github.com/affinity-engine/affinity-engine-stage-direction-menu",
   "engines": {
     "node": ">= 0.10.0"
   },

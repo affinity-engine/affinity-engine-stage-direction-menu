@@ -1,6 +1,6 @@
-[![npm version](https://badge.fury.io/js/affinity-engine-stage-menu.svg)](https://badge.fury.io/js/affinity-engine-stage-menu)
-[![Build Status](https://travis-ci.org/affinity-engine/affinity-engine-stage-menu.svg?branch=master)](https://travis-ci.org/affinity-engine/affinity-engine-stage-menu)
+[![npm version](https://badge.fury.io/js/affinity-engine-stage-direction-menu.svg)](https://badge.fury.io/js/affinity-engine-stage-direction-menu)
+[![Build Status](https://travis-ci.org/affinity-engine/affinity-engine-stage-direction-menu.svg?branch=master)](https://travis-ci.org/affinity-engine/affinity-engine-stage-direction-menu)
 
-# affinity-engine-stage-menu
+# affinity-engine-stage-direction-menu
 
 You'll find the interactive guides [here](http://www.ember.engine/learn/stage/directions/menu).

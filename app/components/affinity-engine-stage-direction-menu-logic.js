@@ -1,1 +1,1 @@
-export { default } from 'affinity-engine-stage-menu/components/affinity-engine-stage-direction-menu-logic';
+export { default } from 'affinity-engine-stage-direction-menu/components/affinity-engine-stage-direction-menu-logic';

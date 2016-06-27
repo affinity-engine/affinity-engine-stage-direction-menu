@@ -1,1 +1,1 @@
-export { default } from 'affinity-engine-stage-menu/components/affinity-engine-stage-direction-menu-single-column';
+export { default } from 'affinity-engine-stage-direction-menu/components/affinity-engine-stage-direction-menu-single-column';
