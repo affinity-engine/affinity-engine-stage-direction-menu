@@ -28,9 +28,9 @@ export default Component.extend({
 
   config: multiton('affinity-engine/config', 'engineId'),
   translator: service('affinity-engine/translator'),
-  producer: multiton('affinity-engine/producer', 'engineId'),
+  stateManager: multiton('affinity-engine/state-manager', 'engineId'),
 
-  keyboardActivated: alias('producer.isFocused'),
+  keyboardActivated: alias('stateManager.isFocused'),
 
   choices: configurable(configurationTiers, 'choices'),
   customClassNames: configurable(configurationTiers, 'classNames'),

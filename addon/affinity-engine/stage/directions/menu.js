@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import multiton from 'ember-multiton-service';
 import { Direction } from 'affinity-engine-stage';
+import multiton from 'ember-multiton-service';
 
 const {
   get,

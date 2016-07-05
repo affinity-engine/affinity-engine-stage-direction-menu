@@ -56,22 +56,22 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
     assert.equal($hook('menu_direction_header').text().trim(), 'foo', 'header is set correctly');
     assert.ok($hook('menu_direction_single_column').hasClass('bar'), 'className bar added correctly');
     assert.ok($hook('menu_direction_single_column').hasClass('baz'), 'className baz added correctly');
-    assert.ok(Ember.$(`${hook('menu_direction_option_button')}:nth(0)`).is(':focus'), 'the first button is auto-focused');
+    assert.equal($hook('menu_direction_option_button').get(0), document.activeElement, 'the first button is auto-focused');
 
     return keyDown('ArrowDown');
   }).then(() => {
-    assert.ok(Ember.$(`${hook('menu_direction_option_button')}:nth(1)`).is(':focus'), 'ArrowDown moves the focus down');
+    assert.equal($hook('menu_direction_option_button').get(1), document.activeElement, 'ArrowDown moves the focus down');
 
     return keyDown('ArrowUp');
   }).then(() => {
-    assert.ok(Ember.$(`${hook('menu_direction_option_button')}:nth(0)`).is(':focus'), 'ArrowUp moves the focus up');
+    assert.equal($hook('menu_direction_option_button').get(0), document.activeElement, 'ArrowUp moves the focus up');
 
     return keyDown('ArrowUp');
   }).then(() => {
-    assert.ok(Ember.$(`${hook('menu_direction_option_button')}:nth(2)`).is(':focus'), 'ArrowUp rolls over to the bottom');
+    assert.equal($hook('menu_direction_option_button').get(2), document.activeElement, 'ArrowUp rolls over to the bottom');
 
     return keyDown('ArrowDown');
   }).then(() => {
-    assert.ok(Ember.$(`${hook('menu_direction_option_button')}:nth(0)`).is(':focus'), 'ArrowDown rolls over to the top');
+    assert.equal($hook('menu_direction_option_button').get(0), document.activeElement, 'ArrowDown rolls over to the top');
   });
 });
