@@ -18,7 +18,7 @@ moduleForComponent('affinity-engine-stage-direction-menu-single-column', 'Integr
 test('it renders a header if provided', function(assert) {
   assert.expect(1);
 
-  this.render(hbs`{{affinity-engine-stage-direction-menu-single-column header="foo"}}`);
+  this.render(hbs`{{affinity-engine-stage-direction-menu-single-column header="foo" engineId="foo" windowId="bar"}}`);
 
   assert.equal(this.$(hook('menu_direction_header')).text().trim(), 'foo', 'header was rendered');
 });
@@ -33,6 +33,8 @@ test('it renders the list of choices', function(assert) {
   this.render(hbs`{{affinity-engine-stage-direction-menu-single-column
     choices=choices
     option=(component "affinity-engine-stage-direction-menu-option")
+    engineId="foo"
+    windowId="bar"
   }}`);
 
   assert.equal(this.$(hook('menu_direction_option')).length, 3, 'the correct number of choices was rendered');
