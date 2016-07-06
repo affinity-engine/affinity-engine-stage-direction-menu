@@ -7,7 +7,7 @@ const {
 } = Ember;
 
 export default TextField.extend({
-  classNames: ['et-menu-input'],
+  classNames: ['ae-menu-input'],
   hook: 'menu_direction_option_input',
 
   didInsertElement(...args) {

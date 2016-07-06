@@ -31,7 +31,7 @@ const configurationTiers = [
 export default Component.extend(...mixins, {
   layout,
 
-  classNames: ['et-menu', 'et-menu-single-column'],
+  classNames: ['ae-menu', 'ae-menu-single-column'],
   classNameBindings: ['menuClassNames'],
   hook: 'menu_direction_single_column',
 

@@ -11,7 +11,7 @@ export default Component.extend({
   layout,
 
   classNameBindings: ['choice.class'],
-  classNames: ['et-menu-option'],
+  classNames: ['ae-menu-option'],
   hook: 'menu_direction_option_button',
   tagName: 'button',
 
