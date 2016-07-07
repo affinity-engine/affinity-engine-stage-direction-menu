@@ -1,18 +1,19 @@
-{{component menuUI
+{{#if translatedHeader}}
+  <div class='ae-menu-header' data-test={{hook "menu_direction_header"}}>{{translatedHeader}}</div>
+{{/if}}
+
+{{ember-columnar-menu
+  acceptKeys=acceptKeys
+  cancelKeys=cancelKeys
   choices=translatedChoices
-  directable=directable
-  header=translatedHeader
+  columns=columns
+  customClassNames=joinedCustomClassNames
+  iconFamily=iconFamily
   keyboardActivated=keyboardActivated
   keyboardPriority=keyboardPriority
-  menuClassNames=joinedCustomClassNames
-  engineId=engineId
-  windowId=windowId
-  option=(component "affinity-engine-stage-direction-menu-option"
-    choose=choose
-    keyboardActivated=keyboardActivated
-    keyboardPriority=keyboardPriority
-    iconFamily=iconFamily
-    engineId=engineId
-    windowId=windowId
-  )
+  moveDownKeys=moveDownKeys
+  moveLeftKeys=moveLeftKeys
+  moveRightKeys=moveRightKeys
+  moveUpKeys=moveUpKeys
+  onChoice=onChoice
 }}

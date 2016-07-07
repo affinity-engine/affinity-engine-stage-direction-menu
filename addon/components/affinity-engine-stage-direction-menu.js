@@ -39,7 +39,7 @@ export default Component.extend(...mixins, {
   },
 
   actions: {
-    choose(choice) {
+    onChoice(choice) {
       set(this, 'directable.direction.result', choice);
 
       this.$().parents('.affinity-engine').trigger('focus');

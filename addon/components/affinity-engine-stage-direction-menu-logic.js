@@ -33,11 +33,17 @@ export default Component.extend({
   keyboardActivated: alias('stateManager.isFocused'),
 
   choices: configurable(configurationTiers, 'choices'),
+  columns: configurable(configurationTiers, 'menuColumns'),
   customClassNames: configurable(configurationTiers, 'classNames'),
   header: configurable(configurationTiers, 'header'),
   iconFamily: configurable(configurationTiers, 'iconFamily'),
   keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
-  menuUI: configurable(configurationTiers, 'menuUI'),
+  acceptKeys: configurable(configurationTiers, 'keys.accept'),
+  cancelKeys: configurable(configurationTiers, 'keys.escape'),
+  moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
+  moveLeftKeys: configurable(configurationTiers, 'keys.moveLeft'),
+  moveRightKeys: configurable(configurationTiers, 'keys.moveRight'),
+  moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
 
   didInsertElement(...args) {
     this._super(...args);
@@ -65,11 +71,11 @@ export default Component.extend({
         const key = get(value, 'key') || index;
         const text = get(this, 'translator').translate(value);
 
-        return Ember.Object.create({
+        return {
           ...value,
           key,
           text: typeOf(text) === 'string' ? text : ''
-        });
+        };
       });
     }
   }).readOnly(),

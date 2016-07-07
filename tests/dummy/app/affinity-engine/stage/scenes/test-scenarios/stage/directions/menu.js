@@ -25,7 +25,7 @@ export default Scene.extend({
       { key: 'keyC', text: 'textC' }
     ]);
 
-    data.text(`key: ${menu.result.key}, text: ${menu.result.text}, input: ${menu.result.input}`);
+    data.text(`key: ${menu.result.key}, text: ${menu.result.text}, input: ${menu.result.value}`);
 
     menu = await script.menu(['A', 'B', 'C']).header('foo').classNames(['bar', 'baz']);
   }
