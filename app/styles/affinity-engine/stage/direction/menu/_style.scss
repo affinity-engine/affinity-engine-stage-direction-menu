@@ -5,19 +5,19 @@ $ae-menu-included: true;
 
   position: absolute;
 
-  .ae-menu-option-pair-major {
+  .ember-columnar-menu-option-button-pair-major {
     display: inline-block;
     float: $ae-menu-option-pair-major-float;
     width: $ae-menu-option-pair-major-width;
   }
 
-  .ae-menu-option-pair-minor {
+  .ember-columnar-menu-option-button-pair-minor {
     display: inline-block;
     float: $ae-menu-option-pair-minor-float;
     width: $ae-menu-option-pair-minor-width;
   }
 
-  .ae-menu-option {
+  .ember-columnar-menu-option-button {
     @extend .ae-button;
 
     display: block;
@@ -31,12 +31,12 @@ $ae-menu-included: true;
     margin: $ae-menu-header-margin;
   }
 
-  .ae-menu-option, .ae-menu-header, .ae-menu-input {
+  .ember-columnar-menu-option-button, .ae-menu-header, .ember-columnar-menu-option-input {
     line-height: $ae-menu-child-line-height;
     text-align: $ae-menu-child-text-align;
   }
 
-  .ae-menu-input {
+  .ember-columnar-menu-option-input {
     @extend .ae-input;
   }
 
@@ -47,16 +47,8 @@ $ae-menu-included: true;
     right: $ae-menu-padding;
     padding: 0 $ae-menu-padding;
 
-    .ae-menu-option-text {
+    .ember-columnar-menu-option-button-text {
       @extend .ae-sr-only;
     }
-  }
-}
-
-.ae-text-menu {
-  position: relative;
-
-  .ae-menu {
-    position: relative;
   }
 }
