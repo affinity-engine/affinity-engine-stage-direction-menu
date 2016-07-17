@@ -53,8 +53,8 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
   }).then(() => {
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
     assert.equal($hook('menu_direction_header').text().trim(), 'foo', 'header is set correctly');
-    assert.ok($hook('ember_columnar_menu').hasClass('bar'), 'className bar added correctly');
-    assert.ok($hook('ember_columnar_menu').hasClass('baz'), 'className baz added correctly');
+    assert.ok($hook('menu_direction').hasClass('bar'), 'className bar added correctly');
+    assert.ok($hook('menu_direction').hasClass('baz'), 'className baz added correctly');
     assert.equal($hook('ember_columnar_menu_option_button').get(0), document.activeElement, 'the first button is auto-focused');
 
     return keyDown('ArrowDown');

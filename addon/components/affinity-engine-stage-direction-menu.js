@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu';
 import multiton from 'ember-multiton-service';
-import { deepConfigurable } from 'affinity-engine';
+import { classNamesConfigurable, deepConfigurable } from 'affinity-engine';
 import { DirectableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -25,12 +25,15 @@ const configurationTiers = [
 export default Component.extend(...mixins, {
   layout,
 
+  classNames: ['ae-menu', 'ae-menu-direction'],
+  classNameBindings: ['customClassNames'],
   hook: 'menu_direction',
 
   config: multiton('affinity-engine/config', 'engineId'),
 
   transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
   transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
+  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
 
   didInsertElement(...args) {
     this._super(...args);

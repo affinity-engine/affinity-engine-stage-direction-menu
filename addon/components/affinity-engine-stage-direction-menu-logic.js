@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu-logic';
 import multiton from 'ember-multiton-service';
-import { configurable } from 'affinity-engine';
+import { configurable, classNamesConfigurable } from 'affinity-engine';
 
 const {
   Component,
@@ -33,7 +33,7 @@ export default Component.extend({
 
   choices: configurable(configurationTiers, 'choices'),
   columns: configurable(configurationTiers, 'menuColumns'),
-  customClassNames: configurable(configurationTiers, 'classNames'),
+  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
   header: configurable(configurationTiers, 'header'),
   iconFamily: configurable(configurationTiers, 'iconFamily'),
   keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
