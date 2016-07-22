@@ -17,7 +17,7 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
   assert.expect(21);
 
   visit('/affinity-engine/test-scenarios/stage/directions/menu').then(() => {
-    assert.equal($hook('menu_direction').length, 1, 'menu is rendered');
+    assert.equal($hook('affinity_engine_stage_direction_menu').length, 1, 'menu is rendered');
     assert.equal($hook('ember_flex_menu_option').length, 3, 'options are rendered');
     assert.equal($hook('ember_flex_menu_option_button').length, 3, 'options default to buttons');
     assert.ok($hook('ember_flex_menu').hasClass('ps-container'), 'perfect scrollbar was applied');
@@ -52,9 +52,9 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
     return delay(50);
   }).then(() => {
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
-    assert.equal($hook('menu_direction_header').text().trim(), 'foo', 'header is set correctly');
-    assert.ok($hook('menu_direction').hasClass('bar'), 'className bar added correctly');
-    assert.ok($hook('menu_direction').hasClass('baz'), 'className baz added correctly');
+    assert.equal($hook('affinity_engine_stage_direction_menu_header').text().trim(), 'foo', 'header is set correctly');
+    assert.ok($hook('affinity_engine_stage_direction_menu').hasClass('bar'), 'className bar added correctly');
+    assert.ok($hook('affinity_engine_stage_direction_menu').hasClass('baz'), 'className baz added correctly');
     assert.equal($hook('ember_flex_menu_option_button').get(0), document.activeElement, 'the first button is auto-focused');
 
     return keyDown('ArrowDown');

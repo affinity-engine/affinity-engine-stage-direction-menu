@@ -25,9 +25,9 @@ const configurationTiers = [
 export default Component.extend(...mixins, {
   layout,
 
-  classNames: ['ae-menu', 'ae-menu-direction'],
+  classNames: ['ae-menu', 'ae-stage-direction-menu'],
   classNameBindings: ['customClassNames'],
-  hook: 'menu_direction',
+  hook: 'affinity_engine_stage_direction_menu',
 
   config: multiton('affinity-engine/config', 'engineId'),
 
