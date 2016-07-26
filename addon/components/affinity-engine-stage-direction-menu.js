@@ -17,9 +17,9 @@ const mixins = [
 
 const configurationTiers = [
   'directable.attrs',
-  'config.attrs.stage.menu',
-  'config.attrs.stage',
-  'config.attrs.globals'
+  'config.attrs.component.stage.direction.menu',
+  'config.attrs.component.stage',
+  'config.attrs'
 ];
 
 export default Component.extend(...mixins, {
