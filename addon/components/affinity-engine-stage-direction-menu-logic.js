@@ -67,7 +67,8 @@ export default Component.extend({
 
       return choices.map((value, index) => {
         const key = get(value, 'key') || index;
-        const text = get(this, 'translator').translate(value);
+        const textKey = get(value, 'text.key') || get(value, 'text') || value;
+        const text = get(this, 'translator').translate(textKey, get(value, 'text.options')) || textKey;
 
         return {
           ...value,
@@ -82,7 +83,7 @@ export default Component.extend({
     get() {
       const header = get(this, 'header');
 
-      return get(this, 'translator').translate(header);
+      return get(this, 'translator').translate(header) || header;
     }
   }).readOnly()
 });
