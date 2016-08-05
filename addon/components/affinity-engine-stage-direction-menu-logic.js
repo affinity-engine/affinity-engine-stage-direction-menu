@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu-logic';
 import multiton from 'ember-multiton-service';
-import { configurable, classNamesConfigurable } from 'affinity-engine';
+import { configurable, classNamesConfigurable, registrant } from 'affinity-engine';
 
 const {
   Component,
@@ -12,7 +12,6 @@ const {
 } = Ember;
 
 const { computed: { alias } } = Ember;
-const { inject: { service } } = Ember;
 
 const configurationTiers = [
   'directable.attrs',
@@ -27,7 +26,7 @@ export default Component.extend({
   tagName: null,
 
   config: multiton('affinity-engine/config', 'engineId'),
-  translator: service('affinity-engine/translator'),
+  translator: registrant('affinity-engine/translator'),
 
   keyboardActivated: alias('isFocused'),
 
