@@ -81,9 +81,9 @@ export default Component.extend({
 
   translatedHeader: computed('header', {
     get() {
-      const header = get(this, 'header');
+      const header = get(this, 'header.key') || get(this, 'header');
 
-      return get(this, 'translator').translate(header) || header;
+      return get(this, 'translator').translate(header, get(this, 'header.options')) || header;
     }
   }).readOnly()
 });
