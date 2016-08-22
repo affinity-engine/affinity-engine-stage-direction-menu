@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu-logic';
 import multiton from 'ember-multiton-service';
-import { configurable, classNamesConfigurable, registrant } from 'affinity-engine';
+import { registrant } from 'affinity-engine';
 
 const {
   Component,
@@ -13,13 +13,6 @@ const {
 
 const { computed: { alias } } = Ember;
 
-const configurationTiers = [
-  'directable.attrs',
-  'config.attrs.component.stage.direction.menu',
-  'config.attrs.component.stage',
-  'config.attrs'
-];
-
 export default Component.extend({
   layout,
 
@@ -30,18 +23,17 @@ export default Component.extend({
 
   keyboardActivated: alias('isFocused'),
 
-  choices: configurable(configurationTiers, 'choices'),
-  columns: configurable(configurationTiers, 'menuColumns'),
-  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
-  header: configurable(configurationTiers, 'header'),
-  iconFamily: configurable(configurationTiers, 'iconFamily'),
-  keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
-  acceptKeys: configurable(configurationTiers, 'keys.accept'),
-  cancelKeys: configurable(configurationTiers, 'keys.escape'),
-  moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
-  moveLeftKeys: configurable(configurationTiers, 'keys.moveLeft'),
-  moveRightKeys: configurable(configurationTiers, 'keys.moveRight'),
-  moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
+  choices: alias('directable.choices'),
+  columns: alias('directable.columns'),
+  header: alias('directable.header'),
+  iconFamily: alias('directable.iconFamily'),
+  keyboardPriority: alias('directable.keyboardPriority'),
+  acceptKeys: alias('directable.acceptKeys'),
+  cancelKeys: alias('directable.cancelKeys'),
+  moveDownKeys: alias('directable.moveDownKeys'),
+  moveLeftKeys: alias('directable.moveLeftKeys'),
+  moveRightKeys: alias('directable.moveRightKeys'),
+  moveUpKeys: alias('directable.moveUpKeys'),
 
   didInsertElement(...args) {
     this._super(...args);
@@ -52,14 +44,6 @@ export default Component.extend({
       this.send('choose', choice);
     }
   },
-
-  joinedCustomClassNames: computed('customClassNames.[]', {
-    get() {
-      const classNames = get(this, 'customClassNames');
-
-      return typeOf(classNames) === 'array' ? classNames.join(' ') : classNames;
-    }
-  }),
 
   translatedChoices: computed('choices.[]', {
     get() {

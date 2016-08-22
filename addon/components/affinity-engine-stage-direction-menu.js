@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu';
 import multiton from 'ember-multiton-service';
-import { classNamesConfigurable, deepConfigurable } from 'affinity-engine';
 import { DirectableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -10,16 +9,11 @@ const {
   set
 } = Ember;
 
+const { computed: { alias } } = Ember;
+
 const mixins = [
   DirectableComponentMixin,
   TransitionableComponentMixin
-];
-
-const configurationTiers = [
-  'directable.attrs',
-  'config.attrs.component.stage.direction.menu',
-  'config.attrs.component.stage',
-  'config.attrs'
 ];
 
 export default Component.extend(...mixins, {
@@ -31,9 +25,9 @@ export default Component.extend(...mixins, {
 
   config: multiton('affinity-engine/config', 'engineId'),
 
-  transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
-  transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
-  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+  transitionIn: alias('directable.transitionIn'),
+  transitionOut: alias('directable.transitionOut'),
+  customClassNames: alias('directable.customClassNames'),
 
   didInsertElement(...args) {
     this._super(...args);

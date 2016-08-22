@@ -1,18 +1,42 @@
 import Ember from 'ember';
+import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
 import { Direction } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
 const {
-  get,
-  getProperties,
+  computed,
   merge,
   set
 } = Ember;
+
+const configurationTiers = [
+  '_attrs',
+  'config.attrs.component.stage.direction.menu',
+  'config.attrs.component.stage',
+  'config.attrs'
+];
 
 export default Direction.extend({
   componentPath: 'affinity-engine-stage-direction-menu',
   layer: 'engine.prompt.menu',
 
+  attrs: computed(() => new Object({
+    columns: configurable(configurationTiers, 'menuColumns'),
+    customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+    header: configurable(configurationTiers, 'header'),
+    iconFamily: configurable(configurationTiers, 'iconFamily'),
+    keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
+    acceptKeys: configurable(configurationTiers, 'keys.accept'),
+    cancelKeys: configurable(configurationTiers, 'keys.escape'),
+    moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
+    moveLeftKeys: configurable(configurationTiers, 'keys.moveLeft'),
+    moveRightKeys: configurable(configurationTiers, 'keys.moveRight'),
+    moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
+    transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
+    transitionOut: deepConfigurable(configurationTiers, 'transitionOut')
+  })),
+
+  config: multiton('affinity-engine/config', 'engineId'),
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
 
   _setup(choices, text) {
@@ -25,15 +49,13 @@ export default Direction.extend({
   },
 
   _reset() {
-    const attrs = get(this, 'attrs');
-
-    return this._super({ ...getProperties(attrs, 'choices', 'text') });
+    return this._super({ });
   },
 
   classNames(classNames) {
     this._entryPoint();
 
-    set(this, 'attrs.classNames', classNames);
+    set(this, '_attrs.classNames', classNames);
 
     return this;
   },
@@ -41,7 +63,7 @@ export default Direction.extend({
   header(header) {
     this._entryPoint();
 
-    set(this, 'attrs.header', header);
+    set(this, '_attrs.header', header);
 
     return this;
   },
@@ -49,7 +71,7 @@ export default Direction.extend({
   keyboardPriority(keyboardPriority) {
     this._entryPoint();
 
-    set(this, 'attrs.keyboardPriority', keyboardPriority);
+    set(this, '_attrs.keyboardPriority', keyboardPriority);
 
     return this;
   },
@@ -57,7 +79,7 @@ export default Direction.extend({
   keys(keys) {
     this._entryPoint();
 
-    set(this, 'attrs.keys', keys);
+    set(this, '_attrs.keys', keys);
 
     return this;
   },
@@ -73,7 +95,7 @@ export default Direction.extend({
   transitionIn(effect, duration, options = {}) {
     this._entryPoint();
 
-    set(this, 'attrs.transitionIn', merge({ duration, effect }, options));
+    set(this, '_attrs.transitionIn', merge({ duration, effect }, options));
 
     return this;
   },
@@ -81,7 +103,7 @@ export default Direction.extend({
   transitionOut(effect, duration, options = {}) {
     this._entryPoint();
 
-    set(this, 'attrs.transitionOut', merge({ duration, effect }, options));
+    set(this, '_attrs.transitionOut', merge({ duration, effect }, options));
 
     return this;
   }

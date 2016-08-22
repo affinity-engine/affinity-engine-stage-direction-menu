@@ -5,11 +5,9 @@ export default Scene.extend({
   name: 'Menu Direction Test',
 
   start: async function(script) {
-    const data = $hook('data');
-
     let menu = await script.menu(['A', 'B', 'C']);
 
-    data.text(`key: ${menu.result.key}, text: ${menu.result.text}`);
+    $hook('data').text(`key: ${menu.result.key}, text: ${menu.result.text}`);
 
     menu = await script.menu([
       { key: 'keyA', text: 'textA' },
@@ -17,7 +15,7 @@ export default Scene.extend({
       { key: 'keyC', text: 'textC' }
     ]);
 
-    data.text(`key: ${menu.result.key}, text: ${menu.result.text}`);
+    $hook('data').text(`key: ${menu.result.key}, text: ${menu.result.text}`);
 
     menu = await script.menu([
       { key: 'keyA', text: 'textA', inputable: true },
@@ -25,7 +23,7 @@ export default Scene.extend({
       { key: 'keyC', text: 'textC' }
     ]);
 
-    data.text(`key: ${menu.result.key}, text: ${menu.result.text}, input: ${menu.result.value}`);
+    $hook('data').text(`key: ${menu.result.key}, text: ${menu.result.text}, input: ${menu.result.value}`);
 
     menu = await script.menu(['A', 'B', 'C']).header('foo').classNames(['bar', 'baz']);
   }

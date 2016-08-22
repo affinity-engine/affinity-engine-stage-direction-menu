@@ -49,7 +49,7 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
 
     return keyDown('Enter');
   }).then(() => {
-    return delay(50);
+    return delay(100);
   }).then(() => {
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
     assert.equal($hook('affinity_engine_stage_direction_menu_header').text().trim(), 'foo', 'header is set correctly');
