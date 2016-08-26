@@ -1,39 +1,31 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu';
 import multiton from 'ember-multiton-service';
-import { DirectableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
+import { DirectableComponentMixin } from 'affinity-engine-stage';
 
 const {
   Component,
-  run,
+  computed,
   set
 } = Ember;
 
-const { computed: { alias } } = Ember;
+const { alias } = computed;
 
-const mixins = [
-  DirectableComponentMixin,
-  TransitionableComponentMixin
-];
-
-export default Component.extend(...mixins, {
+export default Component.extend(DirectableComponentMixin, {
   layout,
 
   classNames: ['ae-menu', 'ae-stage-direction-menu'],
   classNameBindings: ['customClassNames'],
   hook: 'affinity_engine_stage_direction_menu',
 
+  transitions: computed(() => Ember.A()),
+
   config: multiton('affinity-engine/config', 'engineId'),
 
+  animationAdapter: alias('directable.animationAdapter'),
+  customClassNames: alias('directable.customClassNames'),
   transitionIn: alias('directable.transitionIn'),
   transitionOut: alias('directable.transitionOut'),
-  customClassNames: alias('directable.customClassNames'),
-
-  didInsertElement(...args) {
-    this._super(...args);
-
-    this.executeTransitionIn();
-  },
 
   actions: {
     onChoice(choice) {
@@ -41,11 +33,11 @@ export default Component.extend(...mixins, {
 
       this.$().parents('.affinity-engine').trigger('focus');
 
-      this.executeTransitionOut().then(() => {
-        run(() => {
-          this.resolveAndDestroy();
-        });
-      });
+      set(this, 'willTransitionOut', true);
+    },
+
+    didTransitionOut() {
+      this.resolveAndDestroy();
     }
   }
 });

@@ -1,7 +1,17 @@
-{{affinity-engine-stage-direction-menu-logic
-  directable=directable
-  engineId=engineId
-  isFocused=isFocused
-  windowId=windowId
-  onChoice=(action 'onChoice')
+{{#affinity-engine-animation-box-wrapper
+  animationAdapter=animationAdapter
+  classNames="ae-hidden"
+  transitionIn=transitionIn
+  transitionOut=transitionOut
+  willTransitionOut=willTransitionOut
+  didTransitionOut=(action "didTransitionOut")
+  resolve=(action resolve)
 }}
+  {{affinity-engine-stage-direction-menu-logic
+    directable=directable
+    engineId=engineId
+    isFocused=isFocused
+    windowId=windowId
+    onChoice=(action 'onChoice')
+  }}
+{{/affinity-engine-animation-box-wrapper}}
