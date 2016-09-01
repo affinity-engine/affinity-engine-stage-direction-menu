@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
-import { Direction } from 'affinity-engine-stage';
+import { Direction, cmd } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
 const {
@@ -47,67 +47,31 @@ export default Direction.extend({
     }
   }),
 
-  _setup(choices) {
-    this._entryPoint();
-
+  _setup: cmd({ async: true, directable: true }, function(choices) {
     set(this, 'attrs.choices', choices);
+  }),
 
-    return this;
-  },
-
-  classNames(classNames) {
-    this._entryPoint();
-
+  classNames: cmd(function(classNames) {
     set(this, 'attrs.classNames', classNames);
+  }),
 
-    return this;
-  },
-
-  header(header) {
-    this._entryPoint();
-
+  header: cmd(function(header) {
     set(this, 'attrs.header', header);
+  }),
 
-    return this;
-  },
-
-  keyboardPriority(keyboardPriority) {
-    this._entryPoint();
-
+  keyboardPriority: cmd(function(keyboardPriority) {
     set(this, 'attrs.keyboardPriority', keyboardPriority);
+  }),
 
-    return this;
-  },
-
-  keys(keys) {
-    this._entryPoint();
-
+  keys: cmd(function(keys) {
     set(this, 'attrs.keys', keys);
+  }),
 
-    return this;
-  },
-
-  transition(...args) {
-    this._entryPoint();
-
-    this.transitionIn(...args);
-
-    return this;
-  },
-
-  transitionIn(effect, duration, options = {}) {
-    this._entryPoint();
-
+  transitionIn: cmd(function(effect, duration, options = {}) {
     set(this, 'attrs.transitionIn', assign({ duration, effect }, options));
+  }),
 
-    return this;
-  },
-
-  transitionOut(effect, duration, options = {}) {
-    this._entryPoint();
-
+  transitionOut: cmd(function(effect, duration, options = {}) {
     set(this, 'attrs.transitionOut', assign({ duration, effect }, options));
-
-    return this;
-  }
+  })
 });
