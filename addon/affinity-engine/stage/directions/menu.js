@@ -19,6 +19,8 @@ export default Direction.extend({
 
   _configurationTiers: [
     'attrs',
+    'links.attrs',
+    'links.fixtures.menu',
     'config.attrs.component.stage.direction.menu',
     'config.attrs.component.stage',
     'config.attrs'
