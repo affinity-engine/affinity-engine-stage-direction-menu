@@ -22,7 +22,7 @@ export default Component.extend(DirectableComponentMixin, {
 
   config: multiton('affinity-engine/config', 'engineId'),
 
-  animationAdapter: alias('directable.animationAdapter'),
+  animationLibrary: alias('directable.animationLibrary'),
   customClassNames: alias('directable.customClassNames'),
   transitionIn: alias('directable.transitionIn'),
   transitionOut: alias('directable.transitionOut'),

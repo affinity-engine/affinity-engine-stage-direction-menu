@@ -31,6 +31,7 @@ export default Direction.extend({
       const configurationTiers = get(this, '_configurationTiers');
 
       return {
+        animationLibrary: configurable(configurationTiers, 'animationLibrary'),
         choices: configurable(configurationTiers, 'choices'),
         columns: configurable(configurationTiers, 'menuColumns'),
         customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
