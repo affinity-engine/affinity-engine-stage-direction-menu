@@ -37,7 +37,10 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
 
     return fillIn(hook('ember_flex_menu_option_input'), 'foo');
   }).then(() => {
-    return triggerEvent(hook('ember_flex_menu_option_input'), 'blur');
+    // for some reason, triggerEvent event no longer works here. . . .
+    $hook('ember_flex_menu_option_input').blur();
+
+    return delay(100);
   }).then(() => {
     assert.equal($hook('ember_flex_menu_option_input').length, 0, 'input is removed');
     assert.equal($hook('ember_flex_menu_option_button').length, 3, 'button is restored');
