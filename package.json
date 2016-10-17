@@ -54,9 +54,8 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
     "ember-cli-htmlbars": "^1.0.3",
-    "ember-flex-menu": "0.0.6",
-    "ember-keyboard": "2.0.1",
-    "ember-perfect-scrollbar": "0.0.2"
+    "ember-flex-menu": "^0.0.8",
+    "ember-keyboard": "^2.0.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
