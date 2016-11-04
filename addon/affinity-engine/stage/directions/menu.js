@@ -23,7 +23,7 @@ export default Direction.extend({
     'links.fixtures.menu',
     'config.attrs.component.stage.direction.menu',
     'config.attrs.component.stage',
-    'config.attrs'
+    'config.attrs.global'
   ],
 
   _directableDefinition: computed('_configurationTiers', {

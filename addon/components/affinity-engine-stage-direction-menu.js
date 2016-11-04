@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu';
-import multiton from 'ember-multiton-service';
 import { DirectableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -19,8 +18,6 @@ export default Component.extend(DirectableComponentMixin, {
   hook: 'affinity_engine_stage_direction_menu',
 
   transitions: computed(() => Ember.A()),
-
-  config: multiton('affinity-engine/config', 'engineId'),
 
   animationLibrary: alias('directable.animationLibrary'),
   customClassNames: alias('directable.customClassNames'),
