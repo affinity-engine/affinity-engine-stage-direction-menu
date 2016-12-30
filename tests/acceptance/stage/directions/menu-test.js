@@ -16,6 +16,8 @@ moduleForAcceptance('Acceptance | affinity-engine/stage/directions/menu', {
 test('Affinity Engine | Director | Directions | Menu', function(assert) {
   assert.expect(21);
 
+  const done = assert.async();
+
   visit('/affinity-engine/test-scenarios/stage/directions/menu').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_menu').length, 1, 'menu is rendered');
     assert.equal($hook('ember_flex_menu_option').length, 3, 'options are rendered');
@@ -75,5 +77,7 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
     return keyDown('ArrowDown');
   }).then(() => {
     assert.equal($hook('ember_flex_menu_option_button').get(0), document.activeElement, 'ArrowDown rolls over to the top');
+
+    done();
   });
 });
