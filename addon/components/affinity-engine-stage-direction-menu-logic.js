@@ -7,7 +7,6 @@ const {
   Component,
   computed,
   get,
-  isPresent,
   typeOf
 } = Ember;
 
@@ -46,13 +45,7 @@ export default Component.extend(PerfectScrollbarMixin, {
   didInsertElement(...args) {
     this._super(...args);
 
-    if (isPresent(get(this, 'priorSceneRecord'))) {
-      const choice = get(this, 'priorSceneRecord');
-
-      this.send('choose', choice);
-    } else {
-      next(() => this.element.scrollTop = 0);
-    }
+    next(() => this.element.scrollTop = 0);
   },
 
   translatedChoices: computed('choices.[]', {
