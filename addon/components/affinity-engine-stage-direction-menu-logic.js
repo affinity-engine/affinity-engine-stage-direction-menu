@@ -12,6 +12,7 @@ const {
 } = Ember;
 
 const { computed: { alias } } = Ember;
+const { run: { next } } = Ember;
 
 export default Component.extend(PerfectScrollbarMixin, {
   layout,
@@ -49,6 +50,8 @@ export default Component.extend(PerfectScrollbarMixin, {
       const choice = get(this, 'priorSceneRecord');
 
       this.send('choose', choice);
+    } else {
+      next(() => this.element.scrollTop = 0);
     }
   },
 
