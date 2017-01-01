@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu-logic';
 import { registrant } from 'affinity-engine';
+import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
 
 const {
   Component,
@@ -12,10 +13,13 @@ const {
 
 const { computed: { alias } } = Ember;
 
-export default Component.extend({
+export default Component.extend(PerfectScrollbarMixin, {
   layout,
 
-  tagName: null,
+  classNames: ['ae-menu', 'ae-stage-direction-menu'],
+  classNameBindings: ['customClassNames'],
+
+  hook: 'affinity_engine_stage_direction_menu_logic',
 
   translator: registrant('affinity-engine/translator'),
 
@@ -23,6 +27,7 @@ export default Component.extend({
 
   choices: alias('directable.choices'),
   columns: alias('directable.columns'),
+  customClassNames: alias('directable.customClassNames'),
   header: alias('directable.header'),
   iconFamily: alias('directable.iconFamily'),
   keyboardPriority: alias('directable.keyboardPriority'),
@@ -32,6 +37,10 @@ export default Component.extend({
   moveLeftKeys: alias('directable.moveLeftKeys'),
   moveRightKeys: alias('directable.moveRightKeys'),
   moveUpKeys: alias('directable.moveUpKeys'),
+
+  perfectScrollbarOptions: {
+    suppressScrollX: true
+  },
 
   didInsertElement(...args) {
     this._super(...args);
