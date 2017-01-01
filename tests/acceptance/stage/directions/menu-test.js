@@ -57,7 +57,7 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
     return delay(100);
   }).then(() => {
     assert.equal($hook('data').text().trim(), 'key: keyA, text: textA, input: foo', 'third result correct');
-    assert.equal($hook('affinity_engine_stage_direction_menu_header').text().trim(), 'foo', 'header is set correctly');
+    assert.equal($hook('affinity_engine_stage_direction_menu_text').text().trim(), 'foo', 'text is set correctly');
     assert.ok($hook('affinity_engine_stage_direction_menu_logic').hasClass('bar'), 'className bar added correctly');
     assert.ok($hook('affinity_engine_stage_direction_menu_logic').hasClass('baz'), 'className baz added correctly');
     assert.equal($hook('ember_flex_menu_option_button').get(0), document.activeElement, 'the first button is auto-focused');

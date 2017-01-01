@@ -28,7 +28,7 @@ export default Component.extend(PerfectScrollbarMixin, {
   choices: alias('directable.choices'),
   columns: alias('directable.columns'),
   customClassNames: alias('directable.customClassNames'),
-  header: alias('directable.header'),
+  text: alias('directable.text'),
   iconFamily: alias('directable.iconFamily'),
   keyboardPriority: alias('directable.keyboardPriority'),
   acceptKeys: alias('directable.acceptKeys'),
@@ -70,11 +70,11 @@ export default Component.extend(PerfectScrollbarMixin, {
     }
   }).readOnly(),
 
-  translatedHeader: computed('header', {
+  translatedText: computed('text', {
     get() {
-      const header = get(this, 'header.key') || get(this, 'header');
+      const text = get(this, 'text.key') || get(this, 'text');
 
-      return get(this, 'translator').translate(header, get(this, 'header.options')) || header;
+      return get(this, 'translator').translate(text, get(this, 'text.options')) || text;
     }
   }).readOnly()
 });

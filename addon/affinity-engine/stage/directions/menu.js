@@ -35,7 +35,7 @@ export default Direction.extend({
         choices: configurable(configurationTiers, 'choices'),
         columns: configurable(configurationTiers, 'menuColumns'),
         customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
-        header: configurable(configurationTiers, 'header'),
+        text: configurable(configurationTiers, 'text'),
         iconFamily: configurable(configurationTiers, 'iconFamily'),
         keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
         acceptKeys: configurable(configurationTiers, 'keys.accept'),
@@ -58,8 +58,8 @@ export default Direction.extend({
     set(this, 'attrs.classNames', classNames);
   }),
 
-  header: cmd(function(header) {
-    set(this, 'attrs.header', header);
+  text: cmd(function(text) {
+    set(this, 'attrs.text', text);
   }),
 
   keyboardPriority: cmd(function(keyboardPriority) {
