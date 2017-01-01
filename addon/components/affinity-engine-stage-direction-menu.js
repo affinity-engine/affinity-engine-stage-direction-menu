@@ -5,6 +5,7 @@ import { DirectableComponentMixin } from 'affinity-engine-stage';
 const {
   Component,
   computed,
+  get,
   set
 } = Ember;
 
@@ -23,7 +24,7 @@ export default Component.extend(DirectableComponentMixin, {
 
   actions: {
     onChoice(choice) {
-      set(this, 'directable.direction.result', choice);
+      set(this, 'choice', choice);
 
       this.$().parents('.affinity-engine').trigger('focus');
 
@@ -31,7 +32,7 @@ export default Component.extend(DirectableComponentMixin, {
     },
 
     didTransitionOut() {
-      this.resolveAndDestroy();
+      this.resolveAndDestroy(get(this, 'choice'));
     }
   }
 });
