@@ -20,8 +20,8 @@ test('Affinity Engine | Director | Directions | Menu', function(assert) {
 
   visit('/affinity-engine/test-scenarios/stage/directions/menu').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_menu').length, 1, 'menu is rendered');
-    assert.equal($hook('ember_flex_menu_option').length, 26, 'options are rendered');
-    assert.equal($hook('ember_flex_menu_option_button').length, 26, 'options default to buttons');
+    assert.equal($hook('ember_flex_menu_option').length, 28, 'options are rendered');
+    assert.equal($hook('ember_flex_menu_option_button').length, 26, 'options default to buttons, but can specify sliders');
     assert.ok($hook('ember_flex_menu').hasClass('ps-container'), 'perfect scrollbar was applied');
 
     return click(Ember.$(`${hook('ember_flex_menu_option_button')}:nth(1)`));
