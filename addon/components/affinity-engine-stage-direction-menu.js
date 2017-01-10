@@ -6,7 +6,6 @@ const {
   Component,
   computed,
   get,
-  isPresent,
   set
 } = Ember;
 
@@ -22,16 +21,6 @@ export default Component.extend(DirectableComponentMixin, {
   animationLibrary: alias('directable.animationLibrary'),
   transitionIn: alias('directable.transitionIn'),
   transitionOut: alias('directable.transitionOut'),
-
-  init(...args) {
-    this._super(...args);
-
-    if (isPresent(get(this, 'priorSceneRecord'))) {
-      const choice = get(this, 'priorSceneRecord');
-
-      this.send('onChoice', choice);
-    }
-  },
 
   actions: {
     onChoice(choice) {
