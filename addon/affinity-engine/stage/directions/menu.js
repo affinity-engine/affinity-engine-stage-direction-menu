@@ -1,13 +1,9 @@
 import Ember from 'ember';
-import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
 import { Direction, cmd } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
 const {
-  assign,
-  computed,
-  get,
-  set
+  assign
 } = Ember;
 
 export default Direction.extend({
@@ -18,63 +14,16 @@ export default Direction.extend({
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
 
   _configurationTiers: [
-    'attrs',
-    'links.attrs',
-    'links.fixtures.menu',
-    'config.attrs.component.stage.direction.menu',
-    'config.attrs.component.stage',
-    'config.attrs.global'
+    'global',
+    'component.stage',
+    'prompt',
+    'menu',
+    'component.stage.direction.menu'
   ],
 
-  _directableDefinition: computed('_configurationTiers', {
-    get() {
-      const configurationTiers = get(this, '_configurationTiers');
-
-      return {
-        animationLibrary: configurable(configurationTiers, 'animationLibrary'),
-        choices: configurable(configurationTiers, 'choices'),
-        columns: configurable(configurationTiers, 'menuColumns'),
-        customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
-        text: configurable(configurationTiers, 'text'),
-        iconFamily: configurable(configurationTiers, 'iconFamily'),
-        keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
-        acceptKeys: configurable(configurationTiers, 'keys.accept'),
-        cancelKeys: configurable(configurationTiers, 'keys.escape'),
-        moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
-        moveLeftKeys: configurable(configurationTiers, 'keys.moveLeft'),
-        moveRightKeys: configurable(configurationTiers, 'keys.moveRight'),
-        moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
-        transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
-        transitionOut: deepConfigurable(configurationTiers, 'transitionOut')
-      }
-    }
-  }),
-
-  _setup: cmd({ async: true, directable: true }, function(choices) {
-    set(this, 'attrs.choices', choices);
-  }),
-
-  classNames: cmd(function(classNames) {
-    set(this, 'attrs.classNames', classNames);
-  }),
-
-  text: cmd(function(text) {
-    set(this, 'attrs.text', text);
-  }),
-
-  keyboardPriority: cmd(function(keyboardPriority) {
-    set(this, 'attrs.keyboardPriority', keyboardPriority);
-  }),
-
-  keys: cmd(function(keys) {
-    set(this, 'attrs.keys', keys);
-  }),
-
-  transitionIn: cmd(function(effect, duration, options = {}) {
-    set(this, 'attrs.transitionIn', assign({ duration, effect }, options));
-  }),
-
-  transitionOut: cmd(function(effect, duration, options = {}) {
-    set(this, 'attrs.transitionOut', assign({ duration, effect }, options));
+  _setup: cmd({ async: true, render: true }, function(choices, options = {}) {
+    this.configure(assign({
+      choices
+    }, options));
   })
 });

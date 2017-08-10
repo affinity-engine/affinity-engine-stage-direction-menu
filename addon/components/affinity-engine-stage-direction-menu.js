@@ -9,7 +9,7 @@ const {
   set
 } = Ember;
 
-const { alias } = computed;
+const { reads } = computed;
 
 export default Component.extend(DirectableComponentMixin, {
   layout,
@@ -18,9 +18,10 @@ export default Component.extend(DirectableComponentMixin, {
 
   transitions: computed(() => Ember.A()),
 
-  animationLibrary: alias('directable.animationLibrary'),
-  transitionIn: alias('directable.transitionIn'),
-  transitionOut: alias('directable.transitionOut'),
+  configuration: reads('direction.configuration'),
+  animationLibrary: reads('configuration.animationLibrary'),
+  transitionIn: reads('configuration.transitionIn'),
+  transitionOut: reads('configuration.transitionOut'),
 
   actions: {
     onChoice(choice) {

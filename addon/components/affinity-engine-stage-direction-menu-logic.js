@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu-logic';
-import { registrant } from 'affinity-engine';
+import { classNames, registrant } from 'affinity-engine';
 import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
 
 const {
@@ -10,7 +10,7 @@ const {
   typeOf
 } = Ember;
 
-const { computed: { alias } } = Ember;
+const { computed: { reads } } = Ember;
 const { run: { next } } = Ember;
 
 export default Component.extend(PerfectScrollbarMixin, {
@@ -23,20 +23,22 @@ export default Component.extend(PerfectScrollbarMixin, {
 
   translator: registrant('affinity-engine/translator'),
 
-  keyboardActivated: alias('isFocused'),
+  keyboardActivated: reads('isFocused'),
 
-  choices: alias('directable.choices'),
-  columns: alias('directable.columns'),
-  customClassNames: alias('directable.customClassNames'),
-  text: alias('directable.text'),
-  iconFamily: alias('directable.iconFamily'),
-  keyboardPriority: alias('directable.keyboardPriority'),
-  acceptKeys: alias('directable.acceptKeys'),
-  cancelKeys: alias('directable.cancelKeys'),
-  moveDownKeys: alias('directable.moveDownKeys'),
-  moveLeftKeys: alias('directable.moveLeftKeys'),
-  moveRightKeys: alias('directable.moveRightKeys'),
-  moveUpKeys: alias('directable.moveUpKeys'),
+  configuration: reads('direction.configuration'),
+  choices: reads('configuration.choices'),
+  columns: reads('configuration.columns'),
+  text: reads('configuration.text'),
+  iconFamily: reads('configuration.iconFamily'),
+  keyboardPriority: reads('configuration.keyboardPriority'),
+  acceptKeys: reads('configuration.acceptKeys'),
+  cancelKeys: reads('configuration.cancelKeys'),
+  moveDownKeys: reads('configuration.moveDownKeys'),
+  moveLeftKeys: reads('configuration.moveLeftKeys'),
+  moveRightKeys: reads('configuration.moveRightKeys'),
+  moveUpKeys: reads('configuration.moveUpKeys'),
+
+  customClassNames: classNames('configuration.classNames'),
 
   perfectScrollbarOptions: {
     suppressScrollX: true
