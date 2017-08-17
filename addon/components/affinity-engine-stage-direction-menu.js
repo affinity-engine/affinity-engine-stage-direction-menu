@@ -16,12 +16,11 @@ export default Component.extend(DirectableComponentMixin, {
 
   hook: 'affinity_engine_stage_direction_menu',
 
-  transitions: computed(() => Ember.A()),
-
   configuration: reads('direction.configuration'),
   animationLibrary: reads('configuration.animationLibrary'),
   transitionIn: reads('configuration.transitionIn'),
   transitionOut: reads('configuration.transitionOut'),
+  transitions: reads('configuration.transitions'),
 
   actions: {
     onChoice(choice) {

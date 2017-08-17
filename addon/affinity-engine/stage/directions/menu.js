@@ -23,7 +23,12 @@ export default Direction.extend({
 
   _setup: cmd({ async: true, render: true }, function(choices, options = {}) {
     this.configure(assign({
-      choices
+      choices,
+      transitions: Ember.A()
     }, options));
+  }),
+
+  transition: cmd({ async: true, render: true }, function(options = {}) {
+    this.getConfiguration('transitions').pushObject(options);
   })
 });
