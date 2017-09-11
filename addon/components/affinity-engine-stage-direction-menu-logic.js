@@ -5,6 +5,7 @@ import { PerfectScrollbarMixin } from 'ember-perfect-scrollbar';
 
 const {
   Component,
+  assign,
   computed,
   get,
   typeOf
@@ -25,18 +26,18 @@ export default Component.extend(PerfectScrollbarMixin, {
 
   keyboardActivated: reads('isFocused'),
 
-  configuration: reads('direction.configuration'),
+  configuration: reads('direction.configuration.attrs'),
   choices: reads('configuration.choices'),
-  columns: reads('configuration.columns'),
+  columns: reads('configuration.menu.columns'),
   text: reads('configuration.text'),
   iconFamily: reads('configuration.iconFamily'),
   keyboardPriority: reads('configuration.keyboardPriority'),
-  acceptKeys: reads('configuration.acceptKeys'),
-  cancelKeys: reads('configuration.cancelKeys'),
-  moveDownKeys: reads('configuration.moveDownKeys'),
-  moveLeftKeys: reads('configuration.moveLeftKeys'),
-  moveRightKeys: reads('configuration.moveRightKeys'),
-  moveUpKeys: reads('configuration.moveUpKeys'),
+  acceptKeys: reads('configuration.keys.accept'),
+  cancelKeys: reads('configuration.keys.cancel'),
+  moveDownKeys: reads('configuration.keys.moveDown'),
+  moveLeftKeys: reads('configuration.keys.moveLeft'),
+  moveRightKeys: reads('configuration.keys.moveRight'),
+  moveUpKeys: reads('configuration.keys.moveUp'),
 
   customClassNames: classNames('configuration.classNames'),
 
@@ -59,11 +60,10 @@ export default Component.extend(PerfectScrollbarMixin, {
         const textKey = get(value, 'text.key') || get(value, 'text') || value;
         const text = get(this, 'translator').translate(textKey, get(value, 'text.options')) || textKey;
 
-        return {
-          ...value,
+        return assign({}, value, {
           key,
           text: typeOf(text) === 'string' ? text : ''
-        };
+        });
       });
     }
   }).readOnly(),

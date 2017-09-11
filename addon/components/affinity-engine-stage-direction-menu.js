@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-menu';
+import { AnimatableMixin } from 'affinity-engine';
 import { DirectableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -11,16 +12,21 @@ const {
 
 const { reads } = computed;
 
-export default Component.extend(DirectableComponentMixin, {
+export default Component.extend(AnimatableMixin, DirectableComponentMixin, {
   layout,
 
   hook: 'affinity_engine_stage_direction_menu',
+  classNames: ['ae-hidden'],
 
-  configuration: reads('direction.configuration'),
-  animationLibrary: reads('configuration.animationLibrary'),
+  configuration: reads('direction.configuration.attrs'),
+  animator: reads('configuration.animator'),
   transitionIn: reads('configuration.transitionIn'),
   transitionOut: reads('configuration.transitionOut'),
   transitions: reads('configuration.transitions'),
+
+  didTransitionOut() {
+    this.resolveAndDestroy(get(this, 'choice'));
+  },
 
   actions: {
     onChoice(choice) {
@@ -29,10 +35,6 @@ export default Component.extend(DirectableComponentMixin, {
       this.$().parents('.affinity-engine').trigger('focus');
 
       set(this, 'willTransitionOut', true);
-    },
-
-    didTransitionOut() {
-      this.resolveAndDestroy(get(this, 'choice'));
     }
   }
 });

@@ -1,17 +1,7 @@
-{{#affinity-engine-animation-box-wrapper
-  animationAdapter=animationLibrary
-  classNames="ae-hidden"
-  transitionIn=transitionIn
-  transitionOut=transitionOut
-  transitions=transitions
-  willTransitionOut=willTransitionOut
-  didTransitionOut=(action "didTransitionOut")
+{{affinity-engine-stage-direction-menu-logic
+  direction=direction
+  engineId=engineId
+  isFocused=isFocused
+  stageId=stageId
+  onChoice=(action 'onChoice')
 }}
-  {{affinity-engine-stage-direction-menu-logic
-    direction=direction
-    engineId=engineId
-    isFocused=isFocused
-    stageId=stageId
-    onChoice=(action 'onChoice')
-  }}
-{{/affinity-engine-animation-box-wrapper}}

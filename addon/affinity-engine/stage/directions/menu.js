@@ -14,11 +14,13 @@ export default Direction.extend({
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
 
   _configurationTiers: [
-    'global',
-    'component.stage',
-    'prompt',
+    'component.stage.direction.menu',
     'menu',
-    'component.stage.direction.menu'
+    'component.stage.direction.prompt',
+    'prompt',
+    'component.stage.direction.every',
+    'component.stage.every',
+    'children'
   ],
 
   _setup: cmd({ async: true, render: true }, function(choices, options = {}) {
