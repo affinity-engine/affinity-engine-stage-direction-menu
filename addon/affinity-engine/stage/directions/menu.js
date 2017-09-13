@@ -18,9 +18,9 @@ export default Direction.extend({
     'menu',
     'component.stage.direction.prompt',
     'prompt',
-    'component.stage.direction.every',
-    'component.stage.every',
-    'children'
+    'component.stage.direction.all',
+    'component.stage.all',
+    'all'
   ],
 
   _setup: cmd({ async: true, render: true }, function(choices, options = {}) {
