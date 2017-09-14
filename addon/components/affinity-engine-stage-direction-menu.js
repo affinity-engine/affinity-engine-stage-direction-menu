@@ -17,7 +17,7 @@ export default Component.extend(AnimatableMixin, DirectableComponentMixin, {
 
   hook: 'affinity_engine_stage_direction_menu',
   mediaElementSelector: '.ae-stage',
-  classNames: ['ae-hidden'],
+  classNames: ['ae-hidden', 'ae-stage-direction-menu-container'],
 
   configuration: reads('direction.configuration.attrs'),
   animator: reads('configuration.animator'),
