@@ -23,7 +23,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.3.0",
     "ember-cli-htmlbars": "^2.0.1",
-    "ember-flex-menu": "^0.0.16"
+    "ember-flex-menu": "^0.0.17"
   },
   "devDependencies": {
     "affinity-engine": "^0.2.0",
